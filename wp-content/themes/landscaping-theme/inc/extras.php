@@ -75,7 +75,7 @@ add_filter('image_size_names_choose', 'landscaping_theme_custom_image_sizes');
 /**
  * Customize search form
  */
-function landscaping_theme_search_form($form) {
+function landscaping_theme_customize_search_form($form) {
     $form = '<form role="search" method="get" class="search-form" action="' . esc_url(home_url('/')) . '">
         <label>
             <span class="screen-reader-text">' . _x('Поиск:', 'label', 'landscaping-theme') . '</span>
@@ -86,7 +86,7 @@ function landscaping_theme_search_form($form) {
 
     return $form;
 }
-add_filter('get_search_form', 'landscaping_theme_search_form');
+add_filter('get_search_form', 'landscaping_theme_customize_search_form');
 
 /**
  * Add custom styles to admin

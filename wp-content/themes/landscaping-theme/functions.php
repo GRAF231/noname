@@ -303,3 +303,22 @@ function landscaping_theme_register_services_post_type() {
     register_post_type('service', $args);
 }
 add_action('init', 'landscaping_theme_register_services_post_type');
+
+/**
+ * ACF JSON save and load points
+ */
+if (function_exists('acf_add_local_field_group')) {
+    // Автоматическая синхронизация полей ACF
+    add_filter('acf/settings/save_json', 'landscaping_theme_acf_json_save_point');
+    function landscaping_theme_acf_json_save_point($path) {
+        $path = get_stylesheet_directory() . '/acf-json';
+        return $path;
+    }
+
+    add_filter('acf/settings/load_json', 'landscaping_theme_acf_json_load_point');
+    function landscaping_theme_acf_json_load_point($paths) {
+        unset($paths[0]);
+        $paths[] = get_stylesheet_directory() . '/acf-json';
+        return $paths;
+    }
+}
